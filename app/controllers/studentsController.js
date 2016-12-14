@@ -1,6 +1,6 @@
 'use strict'
 
-let ctrl = angular.module('studentsController', []);
+var ctrl = angular.module('studentsController', []);
 const SERVER = 'https://students-rusuvalentin.c9users.io'
 
 ctrl.controller('studentsController', ['$scope', '$http', '$state', function($scope, $http, $state) {
@@ -12,6 +12,13 @@ ctrl.controller('studentsController', ['$scope', '$http', '$state', function($sc
             }).catch((error) => console.log("erroare studentsController"));
 
     }
+    
+    $http.get(SERVER + '/universities')
+        .then(function succes(data) {
+            $scope.universities = data.data;
+            console.log(data);
+        }).catch((error) => console.log("erroare universitiesFromStudentsController"));    
+    
     $scope.addStudent = (student) => {
         $http.post(SERVER + '/students', student)
             .then((response) => {

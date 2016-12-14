@@ -1,46 +1,53 @@
 <div>
     <h2>Studenti</h2>
-    <table>
+    <table class = "pure-table pure-table-bordered">
         <tr>
             <th>Nume</th>
             <th>Prenume</th>
             <th>Email</th>
+            <th>Facultate</th>
             <th></th>
         </tr>
         <tr ng-repeat="student in students" ng-include="getTemplateState(student)">
 
         </tr>
-     </table>
-        <h2>Adauga un student</h2>
+    </table>
+    <h2>Adauga un student</h2>
     <form>
         <label for="numeStudent">Nume</label>
         <input type="text" id="numeStudent" ng-model="student.nume" />
         <label for="prenumeStudent">Prenume</label>
         <input type="text" id="numeStudent" ng-model="student.prenume" />
-        <label for="prenumeStudent">Email</label>
-        <input type="text" id="authorEmail" ng-model="student.email" />
-        
-        <input type="button" value="Adauga" ng-click="addStudent(student)" />
+        <label for="emailStudent">Email</label>
+        <input type="text" id="studentEmail" ng-model="student.email" />
+        <label for="UniversityIdStudent">Facultate</label>
+        <select ng-model = "student.UniversityId">
+            <option ng-repeat="university in universities" value="{{university.id}}">{{university.nume}}</option>
+       </select>
+        <input type="button" class="button-secondary pure-button" value="Adauga" ng-click="addStudent(student)" />
     </form>
-    
+
     <script type="text/ng-template" id="display">
         <td>{{student.nume}}</td>
         <td>{{student.prenume}}</td>
         <td>{{student.email}}</td>
-        
+         <td>{{student.UniversityId}}</td>
+      
+
         <td>
-            <input type="button" value="Stergere" ng-click="deleteStudent(student)" />
-            <input type="button" value="Editare" ng-click="editStudent(student)" />
+            <input type="button" class="button-error pure-button" value="Stergere" ng-click="deleteStudent(student)" />
+            <input type="button" class="button-warning pure-button"  value="Editare" ng-click="editStudent(student)" />
         </td>
     </script>
     <script type="text/ng-template" id="edit">
-        <td><input type="text" ng-model="student.name"/></td>
-        <td><input type="text" ng-model="student.prenume"/></td>
-        <td><input type="text" ng-model="student.email"/></td>
+        <td><input type="text" ng-model="student.nume" /></td>
+        <td><input type="text" ng-model="student.prenume" /></td>
+        <td><input type="text" ng-model="student.email" /></td>
+        <td><input type="text" ng-model="student.UniversityId" /></td>
+
         <td>
-            <input type="button" value="Cancel" ng-click="cancelEditing()" />
-            <input type="button" value="Save" ng-click="saveStudent(student)" />
+            <input type="button" class="button-error pure-button" value="Cancel" ng-click="cancelEditing()" />
+            <input type="button" class="button-success pure-button" value="Save" ng-click="saveStudent(student)" />
         </td>
     </script>
 </div>
-    

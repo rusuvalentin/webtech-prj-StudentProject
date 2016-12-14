@@ -6,11 +6,15 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
     <script type="text/javascript" src="controllers/mainController.js"></script>
     <script type="text/javascript" src="controllers/studentsController.js"></script>
+    <script type="text/javascript" src="controllers/universitiesController.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.1/build/pure-min.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 
 <body ng-app="students">
-    <a ui-sref = "students">Studenti</a>
+    <a ui-sref = "students"><font size="100"> Studenti</font></a>
+    <a ui-sref = "universities"><font size="100"> Facultati</font></a>
     <div ui-view></div>
 </body>
 

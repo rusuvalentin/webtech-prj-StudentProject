@@ -1,7 +1,8 @@
 'use strict'
 let app = angular.module('students', [
     'ui.router',
-    'studentsController'
+    'studentsController',
+    'universitiesController'
     ])
 
 app.config(['$stateProvider', '$urlRouterProvider',  function($stateProvider, $urlRouterProvider){
@@ -11,5 +12,10 @@ app.config(['$stateProvider', '$urlRouterProvider',  function($stateProvider, $u
             url : '/students',
             templateUrl : 'views/students.html',
             controller : 'studentsController'
+        })
+         .state('universities', {
+            url : '/universities',
+            templateUrl : 'views/universities.html',
+            controller : 'universitiesController'
         })
 }])
