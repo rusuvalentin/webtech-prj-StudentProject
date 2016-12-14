@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="students">
     <head>
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="controllers/mainController.js"></script>
     </head>
     <body ng-controller="mainController">
         <div ng-repeat="student in students">
-            <p>{{student.nume }} {{student.prenume}}</p>
+            <p>{{student.nume }} {{student.prenume}} {{student.email}}</p>
         </div>
     </body>
 </html>

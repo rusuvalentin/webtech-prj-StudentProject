@@ -1,9 +1,10 @@
-var ctrl = angular.module('students', [])
+
+var ctrl = angular.module('students',[]);
 
 ctrl.controller('mainController',function($scope,$http){
     $http.get('/students')
-    .then((function succes(data){
+    .then(function succes(data){
         $scope.students = data.data;
         console.log(data);
-    })).catch((error)=>console.log("erroare controller"));
+    }).catch((error)=>console.log("erroare controller"));
 });
