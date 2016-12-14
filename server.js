@@ -1,9 +1,13 @@
 'use strict'
 
 const express = require("express")
+const bodyParser = require('body-parser')
+
 let app = express()
 
+
 app.use(express.static(__dirname + '/app'));
+app.use(bodyParser.json())
 
 app.get('/students', (req, res) => {
     var obj = Student.findAll().then(function(students) {
@@ -111,7 +115,7 @@ app.put('/students/:id', (req, res) => {
         })
         .catch((error) => {
             console.warn(error)
-            res.status(500).send('error' + error)
+            res.status(500).send('eroare put' + error)
         })
 })
 

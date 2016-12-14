@@ -7,20 +7,40 @@
             <th>Email</th>
             <th></th>
         </tr>
-        <tr ng-repeat="student in students track by $index" ng-include="getTemplateState(student)">
+        <tr ng-repeat="student in students" ng-include="getTemplateState(student)">
 
-        <th>{{student.nume}}</th>
-        <th>{{student.prenume}}</th>
-        <th>{{student.email}}</th>
         </tr>
      </table>
-    
+        <h2>Adauga un student</h2>
+    <form>
+        <label for="numeStudent">Nume</label>
+        <input type="text" id="numeStudent" ng-model="student.nume" />
+        <label for="prenumeStudent">Prenume</label>
+        <input type="text" id="numeStudent" ng-model="student.prenume" />
+        <label for="prenumeStudent">Email</label>
+        <input type="text" id="authorEmail" ng-model="student.email" />
+        
+        <input type="button" value="Adauga" ng-click="addStudent(student)" />
+    </form>
     
     <script type="text/ng-template" id="display">
         <td>{{student.nume}}</td>
         <td>{{student.prenume}}</td>
         <td>{{student.email}}</td>
-
+        
+        <td>
+            <input type="button" value="Stergere" ng-click="deleteStudent(student)" />
+            <input type="button" value="Editare" ng-click="editStudent(student)" />
+        </td>
+    </script>
+    <script type="text/ng-template" id="edit">
+        <td><input type="text" ng-model="student.name"/></td>
+        <td><input type="text" ng-model="student.prenume"/></td>
+        <td><input type="text" ng-model="student.email"/></td>
+        <td>
+            <input type="button" value="Cancel" ng-click="cancelEditing()" />
+            <input type="button" value="Save" ng-click="saveStudent(student)" />
+        </td>
     </script>
 </div>
     
