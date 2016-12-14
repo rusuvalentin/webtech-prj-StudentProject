@@ -1,6 +1,6 @@
 <div>
     <h2>Facaultati</h2>
-    <table class = "pure-table pure-table-bordered">
+    <table class="pure-table pure-table-bordered">
         <tr>
             <th>Nume</th>
             <th>Adresa</th>
@@ -26,21 +26,41 @@
 
         <input type="button" class="button-secondary pure-button" value="Adauga" ng-click="addUniversity(university)" />
     </form>
+    <div ng-include="getTemplateForFind()"></div>
 
     <script type="text/ng-template" id="display">
         <td>{{university.nume}}</td>
         <td>{{university.adresa}}</td>
         <td>{{university.nrTel}}</td>
         <td>
-            <a ng-href = "http://{{university.site}}"> {{university.site}}</a>
-           
+            <a ng-href="http://{{university.site}}"> {{university.site}}</a>
+
         </td>
         <td>
+            <input type="button" class="button-error pure-button" value="Find" ng-click="findStudentsByUniversity(university.id)" />
             <input type="button" class="button-error pure-button" value="Stergere" ng-click="deleteUniversity(university)" />
             <input type="button" class="button-warning pure-button" value="Editare" ng-click="editUniversity(university)" />
         </td>
     </script>
-    
+    <script type="text/ng-template" id="find">
+    <h1>Studenti </h1>
+        <table class="pure-table pure-table-bordered">
+            <tr>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Email</th>
+                
+            </tr>
+            <tr ng-repeat="student in studentsFoundByUniversity">
+
+                <td>{{student.nume}}</td>
+                <td>{{student.prenume}}</td>
+                <td>{{student.email}}</td>
+
+                
+            </tr>
+        </table>
+    </script>
     <script type="text/ng-template" id="edit">
         <td><input type="text" ng-model="university.nume" /></td>
         <td><input type="text" ng-model="university.adresa" /></td>

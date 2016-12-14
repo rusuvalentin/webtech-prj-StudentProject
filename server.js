@@ -42,7 +42,7 @@ var University = sequelize.define('University', {
     site: {
         type: Sequelize.STRING,
         validate: {
-            isUrl: true
+            isUrl: false
         }
     }
 });
@@ -136,6 +136,22 @@ app.get("/students/:id", function(req, res) {
     Student.find({
             where: {
                 id: req.params.id
+            }
+        })
+        .then(function(students) {
+            res.json(students);
+        })
+        .catch((error) => {
+            console.warn(error)
+            res.status(500).send('error')
+        })
+
+})
+
+app.get("/students/university/:id", function(req, res) {
+    Student.findAll({
+            where: {
+                UniversityId: req.params.id
             }
         })
         .then(function(students) {

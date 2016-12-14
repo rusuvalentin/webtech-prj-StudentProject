@@ -12,13 +12,27 @@ ctrl.controller('studentsController', ['$scope', '$http', '$state', function($sc
             }).catch((error) => console.log("erroare studentsController"));
 
     }
+
     
+
     $http.get(SERVER + '/universities')
         .then(function succes(data) {
             $scope.universities = data.data;
             console.log(data);
-        }).catch((error) => console.log("erroare universitiesFromStudentsController"));    
-    
+        }).catch((error) => console.log("erroare universitiesFromStudentsController"));
+
+
+    $scope.findUniversityById = (student) => {
+        for (var i = $scope.universities.length - 1; i >= 0; i--) {
+            if (student.UniversityId === $scope.universities[i].id) {
+                return $scope.universities[i].nume;
+            }
+        }
+    }
+
+
+
+
     $scope.addStudent = (student) => {
         $http.post(SERVER + '/students', student)
             .then((response) => {
@@ -44,14 +58,14 @@ ctrl.controller('studentsController', ['$scope', '$http', '$state', function($sc
     $scope.editStudent = (student) => {
         $scope.selected = angular.copy(student)
     }
-    
+
     $scope.cancelEditing = () => {
         $scope.selected = {}
     }
 
 
     $scope.saveStudent = (student) => {
-        $http.put(SERVER + '/students/' + student.id,student)
+        $http.put(SERVER + '/students/' + student.id, student)
             .then((response) => {
                 $state.go($state.current, {}, {
                     reload: true
@@ -60,11 +74,13 @@ ctrl.controller('studentsController', ['$scope', '$http', '$state', function($sc
             .catch((error) => console.log(error))
     }
 
+
+
     $scope.getTemplateState = (student) => {
-        if (student.id === $scope.selected.id){
+        if (student.id === $scope.selected.id) {
             return 'edit'
         }
-        else{
+        else {
             return 'display'
         }
     }
