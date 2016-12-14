@@ -1,0 +1,26 @@
+<div>
+    <h2>Studenti</h2>
+    <table>
+        <tr>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="student in students track by $index" ng-include="getTemplateState(student)">
+
+        <th>{{student.nume}}</th>
+        <th>{{student.prenume}}</th>
+        <th>{{student.email}}</th>
+        </tr>
+     </table>
+    
+    
+    <script type="text/ng-template" id="display">
+        <td>{{student.nume}}</td>
+        <td>{{student.prenume}}</td>
+        <td>{{student.email}}</td>
+
+    </script>
+</div>
+    
