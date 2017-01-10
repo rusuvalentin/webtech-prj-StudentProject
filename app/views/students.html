@@ -13,18 +13,34 @@
         </tr>
     </table>
     <h2>Adauga un student</h2>
-    <form>
+    <form name="addStudentForm" class= "pure-form">
         <label for="numeStudent">Nume</label>
-        <input type="text" id="numeStudent" ng-model="student.nume" />
+        <input type="text" id="numeStudent" name ="nStud" ng-model="student.nume" required minlength ="3" />
         <label for="prenumeStudent">Prenume</label>
-        <input type="text" id="numeStudent" ng-model="student.prenume" />
+        <input type="text" id="prenumeStudent" name="pStud" ng-model="student.prenume" required minlength ="3" />
         <label for="emailStudent">Email</label>
-        <input type="text" id="studentEmail" ng-model="student.email" />
+        <input type="email" id="studentEmail" name="eStud" ng-model="student.email"  />
         <label for="UniversityIdStudent">Facultate</label>
         <select ng-model = "student.UniversityId">
             <option ng-repeat="university in universities" value="{{university.id}}">{{university.nume}}</option>
        </select>
         <input type="button" class="button-secondary pure-button" value="Adauga" ng-click="addStudent(student)" />
+      
+        <div ng-messages="addStudentForm.nStud.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addStudentForm.nStud.$touched">
+                <div ng-message="required">Nu ai introdus numele</div>
+                <div ng-message="minlength">Numele trebuie sa contina mai mult de 3 litere</div>
+         </div>
+         <div ng-messages="addStudentForm.pStud.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addStudentForm.pStud.$touched">
+                <div ng-message="required">Nu ai introdus prenumele</div>
+                <div ng-message="minlength">Prenumele trebuie sa contina mai mult de 3 litere</div>
+         </div>
+         
+         
+         <div ng-messages="addStudentForm.eStud.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addStudentForm.eStud.$touched">
+            <div ng-message="email">Aceasta nu este o adresa de email valida</div>
+        
+        </div>
+        
     </form>
 
     <script type="text/ng-template" id="display">
@@ -39,8 +55,14 @@
             <input type="button" class="button-warning pure-button"  value="Editare" ng-click="editStudent(student)" />
         </td>
     </script>
-    <script type="text/ng-template" id="edit">
-        <td><input type="text" ng-model="student.nume" /></td>
+    <script type="text/ng-template" id="edit" name = "EditForm">
+        <td><input type="text" ng-model="student.nume" required minlength ="3" name = "editNumeStud" />
+            <div ng-messages="EditForm.editNumeStud.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="EditForm.editNumeStud.$touched">
+                <div ng-message="required">Nu ai introdus numele</div>
+                <div ng-message="minlength">Numele trebuie sa contina mai mult de 3 litere</div>
+            </div>
+          
+        </td>
         <td><input type="text" ng-model="student.prenume" /></td>
         <td><input type="text" ng-model="student.email" /></td>
         <td><input type="text" ng-model="student.UniversityId" /></td>
@@ -49,5 +71,6 @@
             <input type="button" class="button-error pure-button" value="Cancel" ng-click="cancelEditing()" />
             <input type="button" class="button-success pure-button" value="Save" ng-click="saveStudent(student)" />
         </td>
+        
     </script>
 </div>

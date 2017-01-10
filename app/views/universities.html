@@ -1,5 +1,5 @@
 <div>
-    <h2>Facaultati</h2>
+    <h2>Facultati</h2>
     <table class="pure-table pure-table-bordered">
         <tr>
             <th>Nume</th>
@@ -14,17 +14,37 @@
     </table>
 
     <h2>Adauga facultate</h2>
-    <form>
+    <form name = "addUniversityForm" class= "pure-form">
         <label for="numeFacultate">Nume</label>
-        <input type="text" id="numeFacultate" ng-model="university.nume" />
+        <input type="text" id="numeFacultate" name ="nameUniversity" ng-model="university.nume" required minlength ="3"/>
         <label for="adresaFacultate">Adresa</label>
-        <input type="text" id="adresaFacultate" ng-model="university.adresa" />
+        <input type="text" id="adresaFacultate" name = "addressUniversity" ng-model="university.adresa" required minlength ="3"/>
         <label for="nrTelFacultate">Telefon</label>
-        <input type="text" id="nrTelFacultate" ng-model="university.nrTel" />
+        <input type="text" id="nrTelFacultate" name ="phoneUniversity" ng-model="university.nrTel" required minlength ="10" maxlength="10"  />
         <label for="siteFacultate">site</label>
-        <input type="text" id="siteFacultate" ng-model="university.site" />
+        <input type="text" id="siteFacultate" name="websiteUniversity" ng-model="university.site" required  />
 
         <input type="button" class="button-secondary pure-button" value="Adauga" ng-click="addUniversity(university)" />
+        
+         <div ng-messages="addUniversityForm.nameUniversity.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addUniversityForm.nameUniversity.$touched">
+                <div ng-message="required">Nu ai introdus numele facultatii</div>
+                <div ng-message="minlength">Numele trebuie sa contina mai mult de 3 litere</div>
+         </div>
+         
+         <div ng-messages="addUniversityForm.addressUniversity.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addUniversityForm.addressUniversity.$touched">
+                <div ng-message="required">Nu ai introdus adresa facultatii</div>
+                <div ng-message="minlength">Adresa trebuie sa contina mai mult de 3 litere</div>
+         </div>
+           <div ng-messages="addUniversityForm.phoneUniversity.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addUniversityForm.phoneUniversity.$touched">
+                <div ng-message="required">Nu ai introdus numarul de telefon al facultatii</div>
+                <div ng-message="minlength">Numarul trebuie sa contina 10 cifre</div>
+                <div ng-message="maxlength">Numarul trebuie sa contina 10 cifre</div>
+         </div>
+         <div ng-messages="addUniversityForm.websiteUniversity.$error" style="color:maroon" role="alert" md-auto-hide="false" ng-if="addUniversityForm.websiteUniversity.$touched">
+                <div ng-message="required">Nu ai introdus site-ul facultatii</div>
+         </div>
+        
+        
     </form>
     <div ng-include="getTemplateForFind()"></div>
 
@@ -37,7 +57,7 @@
 
         </td>
         <td>
-            <input type="button" class="button-error pure-button" value="Find" ng-click="findStudentsByUniversity(university.id)" />
+            <input type="button" class="button-success pure-button" value="Studenti" ng-click="findStudentsByUniversity(university.id)" />
             <input type="button" class="button-error pure-button" value="Stergere" ng-click="deleteUniversity(university)" />
             <input type="button" class="button-warning pure-button" value="Editare" ng-click="editUniversity(university)" />
         </td>

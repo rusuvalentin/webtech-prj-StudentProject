@@ -2,7 +2,8 @@
 let app = angular.module('students', [
     'ui.router',
     'studentsController',
-    'universitiesController'
+    'universitiesController',
+    'ngMessages'
     ])
 
 app.config(['$stateProvider', '$urlRouterProvider',  function($stateProvider, $urlRouterProvider){

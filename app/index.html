@@ -4,6 +4,7 @@
 <head>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0-rc.2/angular.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.0/angular-messages.js"></script>
     <script type="text/javascript" src="controllers/mainController.js"></script>
     <script type="text/javascript" src="controllers/studentsController.js"></script>
     <script type="text/javascript" src="controllers/universitiesController.js"></script>
@@ -12,9 +13,9 @@
 </head>
 
 
-<body ng-app="students">
-    <a ui-sref = "students"><font size="100"> Studenti</font></a>
-    <a ui-sref = "universities"><font size="100"> Facultati</font></a>
+<body ng-app="students" class = "pure-menu pure-menu-horizontal">
+    <a ui-sref = "students"   class="pure-menu-heading pure-menu-link" ><font size="100"> Studenti</font></a>
+    <a ui-sref = "universities" class="pure-menu-heading pure-menu-link "><font size="100"> Facultati</font></a>
     <div ui-view></div>
 </body>
 
